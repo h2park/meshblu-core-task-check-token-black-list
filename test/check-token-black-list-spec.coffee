@@ -1,12 +1,14 @@
 redis = require 'fakeredis'
+Cache = require 'meshblu-core-cache'
 uuid  = require 'uuid'
 CheckTokenBlackList = require '../src/check-token-black-list'
 
 describe 'CheckTokenBlackList', ->
   beforeEach ->
     @redisKey = uuid.v1()
-    @sut = new CheckTokenBlackList cache: redis.createClient(@redisKey)
-    @cache = redis.createClient @redisKey
+    cache = new Cache client: redis.createClient(@redisKey)
+    @sut = new CheckTokenBlackList cache: cache
+    @cache = new Cache client: redis.createClient(@redisKey)
 
   describe '->do', ->
     describe 'when the uuid/token combination is not in the blacklist', ->

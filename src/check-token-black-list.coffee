@@ -9,7 +9,7 @@ class CheckTokenBlackList
 
     @cache.exists "#{uuid}:#{token}", (error, result) =>
       code = 204
-      code = 403 if result == 1
+      code = 403 if result
 
       response =
         metadata:
