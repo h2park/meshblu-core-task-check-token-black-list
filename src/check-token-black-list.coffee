@@ -12,9 +12,10 @@ class CheckTokenBlackList
       code = 403 if result == 1
 
       response =
-        responseId: request.metadata.responseId
-        code: code
-        status: http.STATUS_CODES[code]
+        metadata:
+          responseId: request.metadata.responseId
+          code: code
+          status: http.STATUS_CODES[code]
 
       callback null, response
 

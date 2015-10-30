@@ -22,9 +22,10 @@ describe 'CheckTokenBlackList', ->
 
       it 'should respond with a 204', ->
         expect(@response).to.deep.equal
-          responseId: 'asdf'
-          code: 204
-          status: 'No Content'
+          metadata:
+            responseId: 'asdf'
+            code: 204
+            status: 'No Content'
 
     describe 'when a different uuid/token combination is not in the blacklist', ->
       beforeEach (done) ->
@@ -39,9 +40,10 @@ describe 'CheckTokenBlackList', ->
 
       it 'should respond with a 204', ->
         expect(@response).to.deep.equal
-          responseId: 'some-response'
-          code: 204
-          status: 'No Content'
+          metadata:
+            responseId: 'some-response'
+            code: 204
+            status: 'No Content'
 
     describe 'when a uuid/token combination is in the blacklist', ->
       beforeEach (done) ->
@@ -59,9 +61,10 @@ describe 'CheckTokenBlackList', ->
 
       it 'should respond with a 403', ->
         expect(@response).to.deep.equal
-          responseId: "You'll swim with the fishes (Except they're actually mammals)!"
-          code: 403
-          status: 'Forbidden'
+          metadata:
+            responseId: "You'll swim with the fishes (Except they're actually mammals)!"
+            code: 403
+            status: 'Forbidden'
 
     describe 'when a different uuid/token combination is in the blacklist', ->
       beforeEach (done) ->
@@ -79,6 +82,7 @@ describe 'CheckTokenBlackList', ->
 
       it 'should respond with a 403', ->
         expect(@response).to.deep.equal
-          responseId: 'extreme'
-          code: 403
-          status: 'Forbidden'
+          metadata:
+            responseId: 'extreme'
+            code: 403
+            status: 'Forbidden'
