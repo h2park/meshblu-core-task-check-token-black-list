@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-check-token-black-list",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Meshblu task for checking the token blacklist",
   "main": "index.js",
   "scripts": {
