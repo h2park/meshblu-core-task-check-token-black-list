@@ -61,12 +61,12 @@ describe 'CheckTokenBlackList', ->
 
         @sut.do request, (error, @response) => done error
 
-      it 'should respond with a 403', ->
+      it 'should respond with a 401', ->
         expect(@response).to.deep.equal
           metadata:
             responseId: "You'll swim with the fishes (Except they're actually mammals)!"
-            code: 403
-            status: 'Forbidden'
+            code: 401
+            status: 'Unauthorized'
 
     describe 'when a different uuid/token combination is in the blacklist', ->
       beforeEach (done) ->
@@ -82,9 +82,9 @@ describe 'CheckTokenBlackList', ->
 
         @sut.do request, (error, @response) => done error
 
-      it 'should respond with a 403', ->
+      it 'should respond with a 401', ->
         expect(@response).to.deep.equal
           metadata:
             responseId: 'extreme'
-            code: 403
-            status: 'Forbidden'
+            code: 401
+            status: 'Unauthorized'
