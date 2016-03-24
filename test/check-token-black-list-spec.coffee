@@ -11,6 +11,21 @@ describe 'CheckTokenBlackList', ->
     @cache = new Cache client: redis.createClient(@redisKey)
 
   describe '->do', ->
+    describe 'when there is no auth', ->
+      beforeEach (done) ->
+        request =
+          metadata:
+            responseId: 'asdf'
+
+        @sut.do request, (error, @response) => done error
+
+      it 'should respond with a 422', ->
+        expect(@response).to.deep.equal
+          metadata:
+            responseId: 'asdf'
+            code: 422
+            status: 'Unprocessable Entity'
+
     describe 'when the uuid/token combination is not in the blacklist', ->
       beforeEach (done) ->
         request =
